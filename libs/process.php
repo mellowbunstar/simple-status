@@ -19,18 +19,20 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
-	if (empty($_POST['body'])) {
+	$body = $_POST['body'];
+	if (empty($body)) {
 		alert('Post cannot be empty.', 'error');
 	}
 	else {
-		if (strlen($_POST['body']) > 140) {
+		if (strlen($body) > 140) {
 			alert('Post can only be 140 characters max.', 'error');
 		}
 		else {
-			if(!$mysql->query("INSERT INTO `statuses` (`userId`, `date` ,`body`) VALUES (1, NOW(), '" . clean($_POST['body']) . "')")) {
+			if(!$mysql->query("INSERT INTO `statuses` (`userId`, `date` ,`body`) VALUES (1, NOW(), '" . clean($body) . "')")) {
 				alert('Post was not added.', 'error');
 			}
-			else {		
+			else {
+				$body = '';
 				alert('Post successfully added!', 'success');
 			}			
 		}

@@ -13,7 +13,7 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="assets/css/font-awesome.min.css" rel="stylesheet">
 	<link href="assets/css/master.css" rel="stylesheet">
-    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link rel="shortcut icon" href="assets/favicon.ico">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -31,7 +31,7 @@
 		<?php require 'libs/process.php'; ?>
 		
 		<form action="index.php" method = "post" id="form-posts">
-			<input type="text" name="body" id="body" class="input-block-level" placeholder="What would you like to say?" value="<?php echo (isset($_POST['body']) ? $_POST['body'] : ''); ?>" />
+			<input type="text" name="body" id="body" class="input-block-level" placeholder="What would you like to say?" value="<?php echo (isset($body) ? $body : ''); ?>" />
 			<div class="counter muted">140</div>
 			<input type="submit" name="submit" class="btn btn-info" value="Share" />				
 		</form>
@@ -50,7 +50,7 @@
 							' . $r['username'] . '
 						</h4>
 						<p class="body">' . linkify($r['body']) . '</p>
-						<p class="time muted">Posted ' . relative($r['date'], OFFSET) . ' ago.</p>
+						<p class="time muted">Posted ' . relative($r['date']) . ' ago.</p>
 					</div>'."\r\n";
 				}
 		}
