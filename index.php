@@ -10,11 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="assets/css/font-awesome.min.css" rel="stylesheet">
-	<link href="assets/css/master.css" rel="stylesheet">
-    <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link rel="shortcut icon" href="assets/favicon.ico">
+    <link href="web/css/bootstrap.min.css" rel="stylesheet">
+	<link href="web/css/font-awesome.min.css" rel="stylesheet">
+	<link href="web/css/master.css" rel="stylesheet">
+    <link href="web/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link rel="shortcut icon" href="web/favicon.ico">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -58,8 +58,8 @@
 		
 		<p class="footer muted"><a href="http://github.com/kirako/simple-status">&copy; <?php echo date("Y"); ?> Simple Status</a></p>
     </div>
-    <script src="assets/js/jquery-1.9.0.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/master.js"></script>
+    <script src="web/js/jquery-1.9.0.min.js"></script>
+	<script src="web/js/bootstrap.min.js"></script>
+	<script src="web/js/master.js"></script>
   </body>
 </html>

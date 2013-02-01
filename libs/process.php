@@ -14,7 +14,7 @@ if (isset($searched)) {
 }
  
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
-	if ($mysql->query("DELETE FROM `statuses` WHERE `statusId` = '" .$_GET['delete']."' LIMIT 1")) echo alert('Post successfully deleted.','success');
+	if ($mysql->query("DELETE FROM `statuses` WHERE `statusId` = '" .$_GET['delete']."' LIMIT 1")) alert('Post successfully deleted.','success');
 	else alert('Post was not deleted from the database.', 'error');
 }
 
