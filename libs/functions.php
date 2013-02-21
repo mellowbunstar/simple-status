@@ -1,9 +1,11 @@
 <?php
-require 'libs/mysql.class.php';
+require 'mysql.class.php';
 $mysql = new mysql();
- 
-function relative($time,$offset) {
-    $time = strtotime($time) + ($offset * 60 * 60);
+
+define('TODAY', gmdate("Y-m-d H:i:s"));
+
+function relative($time) {
+    $time = strtotime($time);
 	$gap = time() - $time;
     if ($gap < 60) {
         return '1m';
@@ -44,4 +46,16 @@ function linkify($text) {
   $text = preg_replace('/(^|\s)#(\w+)/','\1<a href="/index.php?q=%23\2">#\2</a>',$text);
   
   return $text;
+}
+
+function post($id, $user, $body, $date) {
+	echo '<div class="post" id="post-' . $id . '">
+		<a href="index.php?delete=' . $id . '" class="close" title="Delete this post?">&times;</a>
+		<h4>
+			<i class="icon-github-alt icon-2x"></i>
+			' . $user . '
+		</h4>
+		<p class="body">' . linkify($body) . '</p>
+		<p class="time muted">Posted ' . relative($date) . ' ago.</p>
+	</div>'."\r\n";
 }

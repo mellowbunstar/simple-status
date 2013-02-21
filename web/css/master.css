@@ -20,9 +20,15 @@ body {
 	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
 	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
 	box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	position: relative;
 }
-#form-posts {
+#form-posts form {
 	text-align: right;
+}
+.spin {
+	position: absolute;
+	bottom: 55px;
+	right: 110px;
 }
 .counter {
 	float: left;

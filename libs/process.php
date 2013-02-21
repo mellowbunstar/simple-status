@@ -1,25 +1,11 @@
 <?php
+require_once 'functions.php';
 
-if (isset($_GET['q'])) {
-	if (strpos($_GET['q'], '#') === 0) {
-		$hash = " AND `body` LIKE '%" . str_replace('%23','#',$_GET['q']) . "%'";
-		$searched = str_replace('%23','#',$_GET['q']);
-	}
-}
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+	foreach ($_POST as $key => $val) $$key = clean($val);
 	
-if (isset($searched)) {
-	echo '<div class="alert alert-info">
-		Currently displaying posts for <strong>' . $searched . '</strong> <a href="index.php"><small>(reset)</small></a>
-	</div>'."\r\n";
-}
- 
-if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
-	if ($mysql->query("DELETE FROM `statuses` WHERE `statusId` = '" .$_GET['delete']."' LIMIT 1")) alert('Post successfully deleted.','success');
-	else alert('Post was not deleted from the database.', 'error');
-}
-
-if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
-	$body = $_POST['body'];
+	if (!isset($_POST['ajx'])) $ajx = false;
+	
 	if (empty($body)) {
 		alert('Post cannot be empty.', 'error');
 	}
@@ -32,11 +18,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
 				alert('Post was not added.', 'error');
 			}
 			else {
-				$body = '';
-				alert('Post successfully added!', 'success');
+				if ($ajx) {
+					$id = mysql_insert_id();
+					$name = $mysql->single("SELECT `username` FROM `statuses` LEFT JOIN `users` ON statuses.userId = users.userId WHERE `statusId` = " . $id); 
+					post($id, $name, $body, TODAY);
+				}
+				else {
+					alert('Post successfully added!', 'success');
+				}
 			}			
 		}
 	}
 }
-
-$getPosts = $mysql->query("SELECT * FROM `statuses` LEFT JOIN `users` ON statuses.userId = users.userId" . (isset($hash) ? $hash : '') ." ORDER BY `date` DESC");
